@@ -47,4 +47,9 @@ class DailymotionScraper:
         elements_list = self.driver.find_elements_by_xpath("//a[@class='Video__details___1Knex']")
         return [element.get_attribute('href') for element in elements_list]
 
+    def get_all_video_titles(self):
+        self.driver.implicitly_wait(60)
+        self.go_to_page_bottom()
+        elements_list = self.driver.find_elements_by_xpath("//div[@class='Details__title___1qhDj Video__title___2PurE']")
+        return [element.get_attribute('textContent') for element in elements_list]
     

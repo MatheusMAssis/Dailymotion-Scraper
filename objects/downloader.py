@@ -28,12 +28,14 @@ class AIOScraper:
     ################
 
     def open_new_tab(self):
-        body = self.driver.find_element_by_tag_name("body")
-        body.send_keys(Keys.CONTROL + 't')
+        self.driver.implicitly_wait(60)
+        self.driver.execute_script('''window.open("http://google.com","_blank");''')
+        self.driver.switch_to_window(self.driver.window_handles[1])
 
     def go_to_main_tab(self):
-        body = self.driver.find_element_by_tag_name("body")
-        body.send_keys(Keys.CONTROL + Keys.TAB)
+        self.driver.implicitly_wait(60)
+        self.driver.close()
+        self.driver.switch_to_window(self.driver.window_handles[0])
 
 
     ################
@@ -60,5 +62,7 @@ class AIOScraper:
     
     def download_video(self, download_link):
         self.open_new_tab()
+        time.sleep(1)
         self.driver.get(download_link)
+        time.sleep(5)
         self.go_to_main_tab()
