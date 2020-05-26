@@ -19,6 +19,9 @@ class AIOScraper:
         self.driver.implicitly_wait(60)
         self.driver.get(self.downloader_url)
 
+    def end_process(self):
+        self.driver.close()
+
 
     ################
     # AUXILIAR ZONE

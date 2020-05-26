@@ -37,6 +37,7 @@ def aio_script(link_list):
         AIO.generate_videos()
         download_link = AIO.get_download_video_link(4)
         AIO.download_video(download_link)
+    AIO.end_process()
 
 
 ################
