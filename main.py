@@ -49,8 +49,8 @@ def aio_script(link_list):
     for link in link_list:
         AIO.insert_link(link)
         AIO.generate_videos()
-        download_link = AIO.get_download_video_link(4)
-        AIO.download_video(download_link)
+        AIO.download_video(4)
+        AIO.return_to_main_page()
     AIO.end_process()
 
 def directory_script(title_list, n_files):

@@ -27,11 +27,6 @@ class AIOScraper:
     # AUXILIAR ZONE
     ################
 
-    def open_new_tab(self):
-        self.driver.implicitly_wait(60)
-        self.driver.execute_script('''window.open("http://google.com","_blank");''')
-        self.driver.switch_to_window(self.driver.window_handles[1])
-
     def go_to_main_tab(self):
         self.driver.implicitly_wait(60)
         self.driver.close()
@@ -53,16 +48,13 @@ class AIOScraper:
         confirm_button = self.driver.find_element_by_xpath("//button[@class='btn btn-download text-white']")
         confirm_button.click()
 
-    def get_download_video_link(self, index):
+    def download_video(self, index):
         time.sleep(20)
         self.driver.implicitly_wait(60)
         buttons_list = self.driver.find_elements_by_xpath("//a[@class='btn btn-sm btn-success']")
-        download_link = buttons_list[index].get_attribute('href')
-        return download_link
+        download_button = buttons_list[index]
+        download_button.click()
     
-    def download_video(self, download_link):
-        self.open_new_tab()
-        time.sleep(1)
-        self.driver.get(download_link)
-        time.sleep(5)
+    def return_to_main_page(self):
+        time.sleep(4)
         self.go_to_main_tab()
